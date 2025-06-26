@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { BiLike, BiDislike } from "react-icons/bi";
+import { FiEdit3, FiEdit2 } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { MdOutlineArticle } from "react-icons/md";
 import NavbarForUseState from "./NavbarForUseState";
 
 const Tweet = () => {
@@ -71,7 +74,9 @@ const Tweet = () => {
       <NavbarForUseState />
       <div className="flex justify-center items-center min-h-screen bg-[#f5fce8] px-4 py-10 text-[#2d3a1f]">
         <div className="bg-white border-2 border-[#2d3a1f] rounded-3xl shadow-lg w-full max-w-xl p-6 space-y-5">
-          <h2 className="text-2xl font-bold text-center">🕊 Tweet App</h2>
+          <h2 className="text-2xl font-bold text-center flex items-center justify-center gap-2">
+            <FiEdit3 className="text-[#2d3a1f]" /> Write a Tweet
+          </h2>
 
           <textarea
             className="w-full h-32 p-3 border border-[#2d3a1f] rounded-2xl resize-none font-medium"
@@ -97,7 +102,9 @@ const Tweet = () => {
             </button>
           </div>
 
-          <h2 className="text-xl font-bold text-center">Your Tweets</h2>
+          <h2 className="text-xl font-bold text-center flex items-center justify-center gap-2">
+            <MdOutlineArticle className="text-[#2d3a1f]" /> Your Tweets
+          </h2>
 
           <ul className="space-y-4">
             {tweets.map((item, index) => (
@@ -132,36 +139,41 @@ const Tweet = () => {
                     <p className="mb-3 font-medium">{item}</p>
                     <div className="flex flex-wrap gap-3">
                       <button
-                        className="px-4 py-1 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold"
+                        className="px-3 py-1 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold"
                         onClick={() => handleEdit(index)}
+                        title="Edit"
                       >
-                        Edit
+                        <FiEdit2 />
                       </button>
+
                       <button
-                        className="px-4 py-1 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold"
+                        className="px-3 py-1 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold"
                         onClick={() => handleDelete(index)}
+                        title="Delete"
                       >
-                        Delete
+                        <RiDeleteBinLine />
                       </button>
 
                       <button
                         onClick={() => handleLike(index)}
-                        className={`px-4 py-1 rounded-xl text-white font-semibold flex items-center gap-1 ${
+                        className={`px-3 py-1 rounded-xl text-white font-semibold flex items-center gap-1 ${
                           likesInfo[index]?.liked ? "bg-green-700" : "bg-green-500"
                         }`}
+                        title="Like"
                         disabled={likesInfo[index]?.liked}
                       >
-                        <BiLike /> {likesInfo[index]?.like}
+                        <AiOutlineLike /> {likesInfo[index]?.like}
                       </button>
 
                       <button
                         onClick={() => handleDislike(index)}
-                        className={`px-4 py-1 rounded-xl text-white font-semibold flex items-center gap-1 ${
+                        className={`px-3 py-1 rounded-xl text-white font-semibold flex items-center gap-1 ${
                           likesInfo[index]?.disliked ? "bg-gray-700" : "bg-gray-500"
                         }`}
+                        title="Dislike"
                         disabled={likesInfo[index]?.disliked}
                       >
-                        <BiDislike /> {likesInfo[index]?.dislike}
+                        <AiOutlineDislike /> {likesInfo[index]?.dislike}
                       </button>
                     </div>
                   </>

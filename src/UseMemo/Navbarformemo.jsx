@@ -1,9 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaReact } from "react-icons/fa";
 
 const NavbarForUseEffect = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const links = [
+    { label: "Input & Toggle", path: "/usememoex1" },
+    { label: "Shop Products", path: "/usememoex2" },
+    { label: "Coming Soon...", path: "/usememoex3" },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-[#e9f6cb] text-[#2d3a1f] px-6 py-4 shadow-md flex items-center justify-between">
@@ -16,24 +23,19 @@ const NavbarForUseEffect = () => {
       </div>
 
       <ul className="flex items-center gap-6 text-md font-semibold">
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/usememoex1")}
-        >
-          Input & toggel
-        </li>
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/usememoex2")}
-        >
-          Shop Products
-        </li>
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/usememoex3")}
-        >
-          Coming Soon...
-        </li>
+        {links.map(({ label, path }) => (
+          <li
+            key={path}
+            onClick={() => navigate(path)}
+            className={`cursor-pointer px-3 py-1 rounded-full transition duration-200 ${
+              location.pathname === path
+                ? "border-2 border-green-700 bg-green-100"
+                : "hover:text-green-600"
+            }`}
+          >
+            {label}
+          </li>
+        ))}
       </ul>
     </nav>
   );

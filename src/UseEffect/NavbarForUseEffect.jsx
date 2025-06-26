@@ -1,9 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaReact } from "react-icons/fa";
 
 const NavbarForUseEffect = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const links = [
+    { label: "UserData", path: "/effect" },
+    { label: "Live clock", path: "/clock" },
+    { label: "Internet Status", path: "/online" },
+    { label: "Form Auto Saver", path: "/autosaver" },
+    { label: "Auto Dark Mode", path: "/autodark" },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-[#e9f6cb] text-[#2d3a1f] px-6 py-4 shadow-md flex items-center justify-between">
@@ -16,36 +25,19 @@ const NavbarForUseEffect = () => {
       </div>
 
       <ul className="flex items-center gap-6 text-md font-semibold">
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/effect")}
-        >
-          UserData
-        </li>
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/clock")}
-        >
-          Live clock
-        </li>
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/online")}
-        >
-          Internet Status
-        </li>
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/autosaver")}
-        >
-          Form Auto Saver
-        </li>
-        <li
-          className="hover:text-green-600 transition duration-200 cursor-pointer"
-          onClick={() => navigate("/autodark")}
-        >
-          Auto Dark Mode
-        </li>
+        {links.map(({ label, path }) => (
+          <li
+            key={path}
+            onClick={() => navigate(path)}
+            className={`cursor-pointer px-3 py-1 rounded-full transition duration-200 ${
+              location.pathname === path
+                ? "border-2 border-green-700 bg-green-100"
+                : "hover:text-green-600"
+            }`}
+          >
+            {label}
+          </li>
+        ))}
       </ul>
     </nav>
   );

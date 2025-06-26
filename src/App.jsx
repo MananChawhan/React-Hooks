@@ -42,6 +42,12 @@ import Online from './UseEffect/Online';
 import AutoDarkMode from './UseEffect/AutoDarkMode';
 import FormValidation from './UseState/Formvalidation';
 
+// UseCallback
+
+import CallbackHome from './UseCallback/CallbackHome';
+import NavbarForUseCallback from './UseCallback/NavbarForUseCallback';
+import ParentComponent from './UseCallback/ParentComponent';
+
  const App = () => {
    return (   
      <div>
@@ -87,6 +93,13 @@ import FormValidation from './UseState/Formvalidation';
         <Route path="/autosaver" element={<FormAutoSaver/>}/>
         <Route path="/online" element={<Online/>}/>
         <Route path="/autodark" element={<AutoDarkMode/>}/>
+
+        {/* Use-Callback */}
+        
+        <Route path="/callbackhome" element={<CallbackHome/>}/>
+        <Route path="/navbarforcallback" element={<NavbarForUseCallback/>}/>
+        <Route path="/parentcomponent" element={<ParentComponent/>}/>
+
         </Routes>
      </div>
    )
